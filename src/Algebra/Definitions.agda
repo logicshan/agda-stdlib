@@ -140,6 +140,13 @@ SelfInverse f = ∀ {x y} → f x ≈ y → f y ≈ x
 Involutive : Op₁ A → Set _
 Involutive f = ∀ x → f (f x) ≈ x
 
+DeMorgan₁ : Op₁ A → Op₂ A → Op₂ A → Set _
+DeMorgan₁ ¬_ _∨_ _∧_ = ∀ {x y} → (¬ (x ∨ y)) ≈ ((¬ x) ∧ (¬ y))
+
+DeMorgan₂ : Op₁ A → Op₂ A → Op₂ A → Set _
+DeMorgan₂ ¬_ _∧_ _∨_ = ∀ {x y} → (¬ (x ∧ y)) ≈ ((¬ x) ∨ (¬ y))
+
+
 LeftCancellative : Op₂ A → Set _
 LeftCancellative _•_ = ∀ x y z → (x • y) ≈ (x • z) → y ≈ z
 

@@ -190,3 +190,29 @@ record IsBooleanAlgebra (∨ ∧ : Op₂ A) (¬ : Op₁ A) (⊤ ⊥ : A) : Set (
 
   ∧-complementʳ : RightInverse ⊥ ¬ ∧
   ∧-complementʳ = proj₂ ∧-complement
+
+record IsDeMorganAlgebra (∨ ∧ : Op₂ A) (¬ : Op₁ A) (⊤ ⊥ : A) : Set (a ⊔ ℓ) where
+  field
+    isDistributiveLattice : IsDistributiveLattice ∨ ∧  
+    -- 底层是一个分配格
+    
+    ¬-involution : Involutive ¬  
+    -- 否定的双重否定等于自身: ¬(¬x) ≈ x
+    
+    ¬-cong : Congruent₁ ¬  
+    -- 否定运算保持等价关系
+    
+    de-morgan₁ : DeMorgan₁ ¬ ∨ ∧
+    -- 第一个德摩根律
+    
+    de-morgan₂ : DeMorgan₂ ¬ ∧ ∨
+    -- 第二个德摩根律
+
+--    ⊤-max : Maximum ⊤ ∧
+--    ⊥-min : Minimum ⊥ ∨
+    -- 有界(也可认为 ⊥ ⊤ 分别是 ∨ 和 ∧ 的单位元)
+    ⊤-∧-identity : RightIdentity ⊤ ∧
+    ⊥-∨-identity : RightIdentity ⊥ ∨
+
+
+  open IsDistributiveLattice isDistributiveLattice public

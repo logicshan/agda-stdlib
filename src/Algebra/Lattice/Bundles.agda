@@ -22,7 +22,8 @@ open import Algebra.Lattice.Structures
   using ( IsSemilattice; IsMeetSemilattice; IsJoinSemilattice
         ; IsBoundedSemilattice; IsBoundedMeetSemilattice
         ; IsBoundedJoinSemilattice; IsLattice; IsDistributiveLattice
-        ; IsBooleanAlgebra)
+        ; IsBooleanAlgebra
+        ; IsDeMorganAlgebra)
 open import Level using (suc; _⊔_)
 open import Relation.Binary.Bundles using (Setoid)
 open import Relation.Binary.Core using (Rel)
@@ -218,6 +219,36 @@ record BooleanAlgebra c ℓ : Set (suc (c ⊔ ℓ)) where
     isBooleanAlgebra : IsBooleanAlgebra _≈_ _∨_ _∧_ ¬_ ⊤ ⊥
 
   open IsBooleanAlgebra isBooleanAlgebra public
+
+  distributiveLattice : DistributiveLattice _ _
+  distributiveLattice = record
+    { isDistributiveLattice = isDistributiveLattice
+    }
+
+  open DistributiveLattice distributiveLattice public
+    using
+    ( _≉_; setoid; rawLattice
+    ; ∨-rawMagma; ∧-rawMagma
+    ; lattice
+    )
+
+
+record DeMorganAlgebra c ℓ : Set (suc (c ⊔ ℓ)) where
+  infix  8 ¬_
+  infixr 7 _∧_
+  infixr 6 _∨_
+  infix  4 _≈_
+  field
+    Carrier          : Set c
+    _≈_              : Rel Carrier ℓ
+    _∨_              : Op₂ Carrier
+    _∧_              : Op₂ Carrier
+    ¬_               : Op₁ Carrier
+    ⊤                : Carrier
+    ⊥                : Carrier
+    isDeMorganAlgebra : IsDeMorganAlgebra _≈_ _∨_ _∧_ ¬_ ⊤ ⊥
+
+  open IsDeMorganAlgebra isDeMorganAlgebra public
 
   distributiveLattice : DistributiveLattice _ _
   distributiveLattice = record
