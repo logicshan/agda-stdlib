@@ -43,12 +43,30 @@ Deprecated names
   _∤∤_    ↦  _∦_
   ```
 
+* In `Algebra.Lattice.Properties.BooleanAlgebra`
+  ```agda
+  ⊥≉⊤   ↦  ¬⊥≈⊤
+  ⊤≉⊥   ↦  ¬⊤≈⊥
+  ```
+
 * In `Algebra.Module.Consequences`
   ```agda
   *ₗ-assoc+comm⇒*ᵣ-assoc      ↦  *ₗ-assoc∧comm⇒*ᵣ-assoc
   *ₗ-assoc+comm⇒*ₗ-*ᵣ-assoc   ↦  *ₗ-assoc∧comm⇒*ₗ-*ᵣ-assoc
   *ᵣ-assoc+comm⇒*ₗ-assoc      ↦  *ᵣ-assoc∧comm⇒*ₗ-assoc
   *ₗ-assoc+comm⇒*ₗ-*ᵣ-assoc   ↦  *ₗ-assoc∧comm⇒*ₗ-*ᵣ-assoc
+  ```
+
+* In `Algebra.Modules.Structures.IsLeftModule`:
+  ```agda
+  uniqueˡ‿⁻ᴹ   ↦  Algebra.Module.Properties.LeftModule.inverseˡ-uniqueᴹ
+  uniqueʳ‿⁻ᴹ   ↦  Algebra.Module.Properties.LeftModule.inverseʳ-uniqueᴹ
+  ```
+
+* In `Algebra.Modules.Structures.IsRightModule`:
+  ```agda
+  uniqueˡ‿⁻ᴹ   ↦  Algebra.Module.Properties.RightModule.inverseˡ-uniqueᴹ
+  uniqueʳ‿⁻ᴹ   ↦  Algebra.Module.Properties.RightModule.inverseʳ-uniqueᴹ
   ```
 
 * In `Algebra.Properties.Magma.Divisibility`:
@@ -86,6 +104,12 @@ Deprecated names
   ∣-trans    ↦  ∣ʳ-trans
   ```
 
+* In `Algebra.Structures.Group`:
+  ```agda
+  uniqueˡ-⁻¹   ↦  Algebra.Properties.Group.inverseˡ-unique
+  uniqueʳ-⁻¹   ↦  Algebra.Properties.Group.inverseʳ-unique
+  ```
+
 * In `Data.List.Base`:
   ```agda
   and       ↦  Data.Bool.ListAction.and
@@ -112,6 +136,8 @@ Deprecated names
 
 New modules
 -----------
+
+* `Algebra.Module.Properties.{Bimodule|LeftModule|RightModule}`.
 
 * `Data.List.Base.{and|or|any|all}` have been lifted out into `Data.Bool.ListAction`.
 
@@ -153,6 +179,12 @@ Additions to existing modules
   kleeneAlgebra                   : KleeneAlgebra c ℓ → KleeneAlgebra (a ⊔ c) (a ⊔ ℓ)
   quasiring                       : Quasiring c ℓ → Quasiring (a ⊔ c) (a ⊔ ℓ)
   commutativeRing                 : CommutativeRing c ℓ → CommutativeRing (a ⊔ c) (a ⊔ ℓ)
+  ```
+
+* In `Algebra.Modules.Properties`:
+  ```agda
+  inverseˡ-uniqueᴹ : x +ᴹ y ≈ 0ᴹ → x ≈ -ᴹ y
+  inverseʳ-uniqueᴹ : x +ᴹ y ≈ 0ᴹ → y ≈ -ᴹ x
   ```
 
 * In `Algebra.Properties.Magma.Divisibility`:
@@ -198,6 +230,13 @@ Additions to existing modules
 * In `Data.List.Relation.Binary.Permutation.PropositionalProperties`:
   ```agda
   filter-↭ : ∀ (P? : Pred.Decidable P) → xs ↭ ys → filter P? xs ↭ filter P? ys
+  ```
+
+* In `Relation.Binary.Construct.Add.Infimum.Strict`:
+  ```agda
+  <₋-accessible-⊥₋ : Acc _<₋_ ⊥₋
+  <₋-accessible[_] : Acc _<_ x → Acc _<₋_ [ x ]
+  <₋-wellFounded   : WellFounded _<_ → WellFounded _<₋_
   ```
 
 * In `Relation.Nullary.Decidable.Core`:
